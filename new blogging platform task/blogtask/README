@@ -1,0 +1,68 @@
+Simple Blogging Platform API
+This is a RESTful API for a simple blogging platform built using Django and Django Rest Framework. The API allows users to create accounts, create, read, update, and delete blog posts, search for posts using keywords, like and comment on posts, and reply to comments. The API includes authentication and authorization mechanisms, documentation, and unit tests.
+
+Requirements
+Python 3.x
+Django 3.x
+Django Rest Framework 3.x
+[10:54, 4/29/2023] Arman: Installation
+Clone the repository to your local machine.
+Install the required dependencies using pip install -r requirements.txt.
+Run database migrations using python manage.py migrate.
+(Optional) Create a superuser for the Django admin site using python manage.py createsuperuser.
+Start the development server using python manage.py runserver.
+
+API Usage
+Authentication
+The API uses token-based authentication. To access the protected endpoints, you must first obtain a token by sending a POST request to the /api/token/ endpoint with a valid username and password. The API will return an access token and a refresh token. Include the access token in the Authorization header of subsequent requests to protected endpoints.
+
+Endpoints
+The API includes the following endpoints:
+
+POST /api/token/: obtain an access token and refresh token.
+POST /api/token/refresh/: obtain a new access token using a refresh token.
+GET /api/blogposts/: get a list of all blog posts.
+POST /api/blogposts/: create a new blog post.
+GET /api/blogposts/{id}/: get a single blog post by ID.
+PATCH /api/blogposts/{id}/: update a blog post by ID.
+DELETE /api/blogposts/{id}/: delete a blog post by ID.
+GET /api/blogposts/search/?query={query}: search for blog posts by keyword.
+POST /api/comments/: create a new comment on a blog post.
+PATCH /api/comments/{id}/: update a comment by ID.
+DELETE /api/comments/{id}/: delete a comment by ID.
+POST /api/comments/{id}/reply/: create a new reply to a comment
+Example Requests
+Here are some example requests to the API endpoints:
+
+Get a list of all blog posts:
+GET /api/blogposts/
+Create a new blog post:
+POST /api/blogposts/
+{
+  "title": "New Blog Post",
+  "content": "Lorem ipsum dolor sit amet"
+}
+Get a single blog post by ID:
+GET /api/blogposts/1/
+Update a blog post by ID:
+PATCH /api/blogposts/1/
+{
+  "title": "Updated Blog Post"
+}
+Delete a blog post by ID:
+DELETE /api/blogposts/1/
+Search for blog posts by keyword
+GET /api/blogposts/search/?query=lorem
+Create a new comment on a blog post:
+POST /api/comments/
+{
+  "blog_post": 1,
+  "content": "Great post!"
+}
+Create a new reply to a comment
+POST /api/comments/1/reply/
+{
+  "content": "Thanks for the comment!"
+}
+Documentation
+The API includes documentation generated using Django Rest Swagger. To viewS
